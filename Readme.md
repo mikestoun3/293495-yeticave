@@ -1,7 +1,7 @@
 # Личный проект «YetiCave» 
 
 * Студент: [Денис Архипов](https://up.htmlacademy.ru/php/1/user/293495).
-* Наставник: `Неизвестно`.
+* Наставник: [Денис Байдаров](https://htmlacademy.ru/profile/4er).
 
 ---
 
