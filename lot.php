@@ -125,7 +125,6 @@ $bets = [
                     <h3>История ставок (<span>4</span>)</h3>
                     <!-- заполните эту таблицу данными из массива $bets-->
                     <table class="history__list">
-
                         <?php foreach($bets as &$bet): ?>
                             <tr class="history__item">
                                 <td class="history__name"><?=$bet['name'];?></td>
@@ -133,7 +132,6 @@ $bets = [
                                 <td class="history__time"><?=relativeTime($bet['ts']);?></td>
                             </tr>
                         <?php endforeach; ?>
-
                     </table>
                 </div>
             </div>
