@@ -7,9 +7,9 @@ require_once 'lots_data.php';
 
 // проверка id
 $lotId = $_GET['id'];
-if(!isset($lotId) || !isset($lots[$lotId]))
+if(!isset($lotId) || !isset($lots[$lotId])) {
     return header("HTTP/1.0 404 Not Found");
-
+}
 
 $current_lot = $lots[$lotId];
 
