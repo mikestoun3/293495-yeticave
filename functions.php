@@ -1,4 +1,5 @@
 <?php
+
 // функция обеспечивает защиту от XSS
 function dataFiltering($data)
 {
@@ -12,6 +13,7 @@ function dataFiltering($data)
     }
     return $result;
 }
+
 // функция выводит шаблон из заданного файла
 function includeTemplate($file, $data)
 {
@@ -24,8 +26,10 @@ function includeTemplate($file, $data)
     } else {
         $result = "";
     }
+
     return $result;
 }
+
 // функция выводит время в относительном формате
 function relativeTime($ts)
 {
@@ -40,4 +44,5 @@ function relativeTime($ts)
     }
     return $result;
 }
+
 ?>
