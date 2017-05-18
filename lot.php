@@ -5,12 +5,11 @@ require_once 'functions.php';
 // подключение файла с данными лотов
 require_once 'lots_data.php';
 
-$err404 = false;
-$id = isset($_GET['id']) ? intval($_GET['id']) : null;
-if (!isset($goods[$id])) {
-    $err404 = true;
-    return header("HTTP/1.1 404 Not Found");
-}
+// проверка id
+$lotId = $_GET['id'];
+if(!isset($lotId) || !isset($lots[$lotId]))
+    return header("HTTP/1.0 404 Not Found");
+
 
 $current_lot = $lots[$lotId];
 
