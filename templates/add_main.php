@@ -1,6 +1,6 @@
 <?php
-include_once 'lots_data.php';
-include_once 'add.php';
+include_once '../lots_data.php';
+include_once '../add.php';
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; 
 ?>
 
@@ -32,7 +32,7 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
     <div class="form__container-two">
       <div class="form__item"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
-        <input id="lot-name" type="text" name="lot-name" class="<?= ($data_error['name']) ? "form__item--invalid" : '' ?>" placeholder="Введите наименование лота">
+        <input id="lot-name" type="text" name="lot-name" class="<?= ($data_new_lot['name']) ?> " placeholder="Введите наименование лота">
         <span class="form__error"></span>
       </div>
       <div class="form__item">
@@ -63,7 +63,7 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" type="file" id="photo2" value="">
+        <input class="visually-hidden" name="form_submit" type="file" id="photo2" value="">
         <label for="photo2">
           <span>+ Добавить</span>
         </label>
@@ -87,6 +87,6 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
       </div>
     </div>
     <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
-    <button type="submit" class="button">Добавить лот</button>
+    <button type="submit" name="form_submit" class="button">Добавить лот</button>
   </form>
 </main>

@@ -1,3 +1,6 @@
+<?php 
+require_once 'add.php';
+?>
 <main>
     <nav class="nav">
         <ul class="nav__list container">
@@ -22,7 +25,7 @@
         </ul>
     </nav>
     <section class="lot-item container">
-        <h2><?=$lot['name'];?></h2>
+        <h2><?=$data_new_lot['step'];?></h2>
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
@@ -48,7 +51,7 @@
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?=$lot['price'];?></span>
+                            <span class="lot-item__cost"><?=$data_new_lot['step'];?></span>
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span>12 000 р</span>

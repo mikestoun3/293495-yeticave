@@ -9,7 +9,7 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
 
 // не заполнено, неправильно заполнено 
 $data_error = []; 
-
+$data_new_lot = []; 
 if(isset($_POST['form_submit'])) {
 
     //проверка имени 
@@ -64,7 +64,6 @@ if(isset($_POST['form_submit'])) {
     } 
     } 
 }
-  $data_new_lot = []; 
 ?>
 
 
@@ -79,11 +78,12 @@ if(isset($_POST['form_submit'])) {
 <body> 
 
 <?=includeTemplate('templates/lot_header.php', []); ?> 
-<? if (count($data_error) == 0) {
-  print includeTemplate('templates/add_main.php', $data_new_lot);
-} else {
+<? if (count($data_error) !== 0) {
   print includeTemplate('templates/add_main.php', $data_error);
-} ?>
+} else {
+  print includeTemplate('templates/lot_main.php', $data_new_lot);
+} 
+  ?>
 <?=includeTemplate('templates/footer.php', []); ?> 
 
 </body> 
