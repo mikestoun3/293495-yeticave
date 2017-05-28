@@ -1,6 +1,3 @@
-<?php 
-require_once 'add.php';
-?>
 <main>
     <nav class="nav">
         <ul class="nav__list container">
@@ -25,11 +22,11 @@ require_once 'add.php';
         </ul>
     </nav>
     <section class="lot-item container">
-        <h2><?=$data_new_lot['step'];?></h2>
+        <h2><?=$lot['name'];?></h2>
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
-                    <img src="<?=$lot['image'];?>" width="730" height="548" alt="Сноуборд">
+                    <img src="<?=$lot['lot-file'];?>" width="730" height="548" alt="Сноуборд">
                 </div>
                 <p class="lot-item__category">Категория: <span><?=$lot['category'];?></span></p>
                 <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
@@ -51,7 +48,7 @@ require_once 'add.php';
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?=$data_new_lot['step'];?></span>
+                            <span class="lot-item__cost"><?=$lot['step'];?></span>
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span>12 000 р</span>

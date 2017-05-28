@@ -1,9 +1,3 @@
-<?php
-include_once '../lots_data.php';
-include_once '../add.php';
-$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; 
-?>
-
 <main>
   <nav class="nav">
     <ul class="nav__list container">
@@ -27,17 +21,17 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
       </li>
     </ul>
   </nav>
-  <form class="form form--add-lot container" action="add.php" method="post"> <!-- form--invalid -->
+  <form class="form form--add-lot container" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-      <div class="form__item"> <!-- form__item--invalid -->
+      <div class="form__item <?= isset($errors['name'])?'form__item--invalid':'' ?>"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
-        <input id="lot-name" type="text" name="lot-name" class="<?= ($data_new_lot['name']) ?> " placeholder="Введите наименование лота">
-        <span class="form__error"></span>
+        <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?= $lot['name']?>">
+        <span class="form__error"><?= $errors['name']?></span>
       </div>
-      <div class="form__item">
+      <div class="form__item <?= isset($errors['category'])?'form__item--invalid':'' ?>">
         <label for="category">Категория</label>
-        <select id="category" name="category" required>
+        <select id="category" name="category" required value="<?= $errors['category']?>">
           <option>Выберите категорию</option>
           <option>Доски и лыжи</option>
           <option>Крепления</option>
@@ -46,34 +40,34 @@ $categories = ["Доски и лыжи", "Крепления", "Ботинки",
           <option>Инструменты</option>
           <option>Разное</option>
         </select>
-        <span class="form__error"></span>
+        <span class="form__error"><?= $errors['category']?></span>
       </div>
     </div>
-    <div class="form__item form__item--wide">
+    <div class="form__item form__item--wide <?= isset($errors['message'])?'form__item--invalid':'' ?>">
       <label for="message">Описание</label>
-      <textarea id="message" name="message" placeholder="Напишите описание лота" required></textarea>
-      <span class="form__error"></span>
+      <textarea id="message" name="message" placeholder="Напишите описание лота"><?= $lot['message']?></textarea>
+      <span class="form__error"><?= $errors['message']?></span>
     </div>
-    <div class="form__item form__item--file"> <!-- form__item--uploaded -->
+    <div class="form__item form__item--file <?= isset($errors['lot-file'])?'form__item--uploaded':'' ?>"> <!-- form__item--uploaded -->
       <label>Изображение</label>
       <div class="preview">
         <button class="preview__remove" type="button">x</button>
         <div class="preview__img">
-          <img src="../img/avatar.jpg" width="113" height="113" alt="Изображение лота">
+          <img src="<?=$lot['image']?>" width="113" height="113" alt="Изображение лота">
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" name="form_submit" type="file" id="photo2" value="">
+        <input class="visually-hidden" name="form_submit" type="file"  id="photo2" value="">
         <label for="photo2">
           <span>+ Добавить</span>
         </label>
       </div>
     </div>
     <div class="form__container-three">
-      <div class="form__item form__item--small">
+      <div class="form__item form__item--small  <?= isset($errors['lot-rate'])?'form__item--invalid':'' ?>">
         <label for="lot-rate">Начальная цена</label>
-        <input id="lot-rate" type="number" name="lot-rate" placeholder="0" required>
-        <span class="form__error"></span>
+        <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?= $lot['lot-rate']?>">
+        <span class="form__error"><?= $errors['lot-rate']?></span>
       </div>
       <div class="form__item form__item--small">
         <label for="lot-step">Шаг ставки</label>

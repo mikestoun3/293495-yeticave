@@ -21,7 +21,7 @@ if(isset($_POST['form_submit'])) {
 
     //проверка описания 
     if (!empty($_POST['message'])) { 
-    $data_new_lot['description'] = htmlspecialchars($_POST['message']); 
+    $data_new_lot['message'] = htmlspecialchars($_POST['message']); 
     } else { 
     $data_error['message'] = 'Введите описание лота'; 
     } 
@@ -30,7 +30,7 @@ if(isset($_POST['form_submit'])) {
     if (empty($_POST['lot-rate']) || !is_numeric($_POST['lot-rate'])) { 
     $data_error['lot-rate'] = 'Некорректное значение'; 
     } else { 
-    $data_new_lot['price'] = $_POST['lot-rate']; 
+    $data_new_lot['lot-rate'] = $_POST['lot-rate']; 
     } 
 
     //проверка шага стоимости 
@@ -56,14 +56,24 @@ if(isset($_POST['form_submit'])) {
 
     //проверка и размещение фото 
     if (isset($_FILES['lot-file'])) { 
-    $file = $_FILES['lot-file']; 
-    if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/png') { 
-    $uploadedfile = move_uploaded_file($file['tmp_name'], 'img/' . $file['name']); 
-    } else { 
-    $data_error['lot-file'] = 'Загрузите фото в формате jpeg/png'; 
+        $file = $_FILES['lot-file']; 
+        if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpg') { 
+          $uploadedfile = move_uploaded_file($file['tmp_name'], 'img/' . $file['name']); 
+          $data_new_lot['lot-file'] = $_POST['lot-file']; 
+          
+        } else { 
+          $data_error['lot-file'] = 'Фото должно быть в формате jpeg/png'; 
+        } 
+    } else {
+       $data_error['lot-file'] = 'Загрузите фото'; 
     } 
-    } 
+    
 }
+  $data =[
+    'errors' => $data_error,
+    'lot' =>$data_new_lot,
+  ]
+
 ?>
 
 
@@ -78,11 +88,11 @@ if(isset($_POST['form_submit'])) {
 <body> 
 
 <?=includeTemplate('templates/lot_header.php', []); ?> 
-<? if (count($data_error) !== 0) {
-  print includeTemplate('templates/add_main.php', $data_error);
-} else {
-  print includeTemplate('templates/lot_main.php', $data_new_lot);
-} 
+<? if (isset($_POST['form_submit']) && count($data_error) == 0) { 
+print includeTemplate('templates/lot_main.php', $data); 
+} else { 
+print includeTemplate('templates/add_main.php', $data); 
+}
   ?>
 <?=includeTemplate('templates/footer.php', []); ?> 
 
