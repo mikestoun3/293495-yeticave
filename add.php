@@ -74,6 +74,7 @@ if(isset($_POST['form_submit'])) {
   $data =[
     'errors' => $data_error,
     'lot' =>$data_new_lot,
+    'bets' =>[],
   ]
 
 ?>
