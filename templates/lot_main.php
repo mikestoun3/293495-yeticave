@@ -1,3 +1,4 @@
+
 <main>
     <nav class="nav">
         <ul class="nav__list container">
@@ -26,7 +27,7 @@
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
-                    <img src="<?=$lot['lot-file'];?>" width="730" height="548" alt="Сноуборд">
+                    <img src="<?=$lot['image'];?>" width="730" height="548" alt="Сноуборд">
                 </div>
                 <p class="lot-item__category">Категория: <span><?=$lot['category'];?></span></p>
                 <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
@@ -48,13 +49,13 @@
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?=$lot['step'];?></span>
+                            <span class="lot-item__cost"><?=$lot['price'];?></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span>12 000 р</span>
+                            Мин. ставка <span>12000</span>
                         </div>
                     </div>
-                    <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
+                    <form class="lot-item__form" action="https://add.php" method="post">
                         <p class="lot-item__form-item">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="number" name="cost" placeholder="12 000">
@@ -64,15 +65,15 @@
                 </div>
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
-                    <table class="history__list">
-                        <?php foreach ($bets as $key => $value): ?>
-                        <tr class="history__item">
-                            <td class="history__name"><?=$value['name'];?></td>
-                            <td class="history__price"><?=$value['price'];?> р</td>
-                            <td class="history__time"><?=relativeTime($value['ts']);?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
+                     <table class="history__list">
+                          <?php foreach ($bets as $key => $value): ?>
+                          <tr class="history__item">
+                              <td class="history__name"><?=$value['buyer-name'];?></td>
+                              <td class="history__price"><?=$value['buyer-price'];?> р</td>
+                              <td class="history__time"><?=relativeTime($value['buyer-ts']);?></td>
+                          </tr>
+                          <?php endforeach; ?>
+                      </table>
                 </div>
             </div>
         </div>

@@ -15,10 +15,10 @@ $current_lot = $lots[$lotId];
 
 // ставки пользователей, которыми надо заполнить таблицу
 $bets = [
-    ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
-    ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
-    ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
-    ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
+    ['buyer-name' => 'Иван', 'buyer-price' => 11500, 'buyer-ts' => strtotime('-' . rand(1, 50) .' minute')],
+    ['buyer-name' => 'Константин', 'buyer-price' => 11000, 'buyer-ts' => strtotime('-' . rand(1, 18) .' hour')],
+    ['buyer-name' => 'Евгений', 'buyer-price' => 10500, 'buyer-ts' => strtotime('-' . rand(25, 50) .' hour')],
+    ['buyer-name' => 'Семён', 'buyer-price' => 10000, 'buyer-ts' => strtotime('last week')]
 ];
 
 ?>
@@ -34,10 +34,7 @@ $bets = [
 <body>
 
 <?=includeTemplate('templates/lot_header.php', []); ?>
-
 <?=includeTemplate('templates/lot_main.php', ['lot' => $current_lot, 'bets' => $bets]); ?>
-
 <?=includeTemplate('templates/footer.php', []); ?>
-
 </body>
 </html>

@@ -30,21 +30,21 @@ if(isset($_POST['form_submit'])) {
     if (empty($_POST['lot-rate']) || !is_numeric($_POST['lot-rate'])) { 
     $data_error['lot-rate'] = 'Некорректное значение'; 
     } else { 
-    $data_new_lot['lot-rate'] = $_POST['lot-rate']; 
+    $data_new_lot['price'] = $_POST['lot-rate']; 
     } 
 
     //проверка шага стоимости 
     if (empty($_POST['lot-step']) || !is_numeric($_POST['lot-step']) || $_POST['lot-step'] < 0) { 
     $data_error['lot-step'] = 'Некорректное значение'; 
     } else { 
-    $data_new_lot['step'] = $_POST['lot-step']; 
+    $data_new_lot['lot-step'] = $_POST['lot-step']; 
     } 
 
     //проверка даты 
     if (empty($_POST['lot-date'])) { 
     $data_error['lot-date'] = 'Введите дату'; 
     } else { 
-    $data_new_lot['date'] = $_POST['lot-date']; 
+    $data_new_lot['lot-date'] = $_POST['lot-date']; 
     } 
 
     //проверка категорий 
@@ -53,22 +53,24 @@ if(isset($_POST['form_submit'])) {
     } else {
       $data_new_lot['category'] = $_POST['category'];
     }
-
+  
     //проверка и размещение фото 
     if (isset($_FILES['lot-file'])) { 
         $file = $_FILES['lot-file']; 
         if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpg') { 
           $uploadedfile = move_uploaded_file($file['tmp_name'], 'img/' . $file['name']); 
-          $data_new_lot['lot-file'] = $_POST['lot-file']; 
+          $data_new_lot['image'] = '/img/' . $file['name'];
           
         } else { 
-          $data_error['lot-file'] = 'Фото должно быть в формате jpeg/png'; 
+          $data_error['image'] = 'Фото должно быть в формате jpeg/png'; 
         } 
     } else {
-       $data_error['lot-file'] = 'Загрузите фото'; 
+       $data_error['image'] = 'Загрузите фото'; 
     } 
+  
     
 }
+  
   $data =[
     'errors' => $data_error,
     'lot' =>$data_new_lot,
@@ -88,7 +90,7 @@ if(isset($_POST['form_submit'])) {
 <body> 
 
 <?=includeTemplate('templates/lot_header.php', []); ?> 
-<? if (isset($_POST['form_submit']) && count($data_error) == 0) { 
+<?php if (isset($_POST['form_submit']) && count($data_error) == 0) { 
 print includeTemplate('templates/lot_main.php', $data); 
 } else { 
 print includeTemplate('templates/add_main.php', $data); 
