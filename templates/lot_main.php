@@ -1,4 +1,3 @@
-
 <main>
     <nav class="nav">
         <ul class="nav__list container">
@@ -56,6 +55,7 @@
                         </div>
                     </div>
                     <form class="lot-item__form" action="https://add.php" method="post">
+
                         <p class="lot-item__form-item">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="number" name="cost" placeholder="12 000">
@@ -74,6 +74,7 @@
                           </tr>
                           <?php endforeach; ?>
                       </table>
+
                 </div>
             </div>
         </div>
