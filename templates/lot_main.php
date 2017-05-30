@@ -51,10 +51,10 @@
                             <span class="lot-item__cost"><?=$lot['price'];?></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span>12 000 р</span>
+                            Мин. ставка <span>12000</span>
                         </div>
                     </div>
-                    <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
+                    <form class="lot-item__form" action="https://add.php" method="post">
                         <p class="lot-item__form-item">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="number" name="cost" placeholder="12 000">
@@ -63,16 +63,16 @@
                     </form>
                 </div>
                 <div class="history">
-                    <h3>История ставок (<span>4</span>)</h3>
-                    <table class="history__list">
-                        <?php foreach ($bets as $key => $value): ?>
-                        <tr class="history__item">
-                            <td class="history__name"><?=$value['name'];?></td>
-                            <td class="history__price"><?=$value['price'];?> р</td>
-                            <td class="history__time"><?=relativeTime($value['ts']);?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
+                    <h3>История ставок (<span><?=count($bets)?></span>)</h3>
+                     <table class="history__list">
+                          <?php foreach ($bets as $key => $value): ?>
+                          <tr class="history__item">
+                              <td class="history__name"><?=$value['buyer-name'];?></td>
+                              <td class="history__price"><?=$value['buyer-price'];?> р</td>
+                              <td class="history__time"><?=relativeTime($value['buyer-ts']);?></td>
+                          </tr>
+                          <?php endforeach; ?>
+                      </table>
                 </div>
             </div>
         </div>
