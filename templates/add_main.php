@@ -1,25 +1,12 @@
 <main>
   <nav class="nav">
-    <ul class="nav__list container">
-      <li class="nav__item">
-        <a href="all-lots.html">Доски и лыжи</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Крепления</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Ботинки</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Одежда</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Инструменты</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Разное</a>
-      </li>
-    </ul>
+     <ul class="nav__list container">
+     <?php foreach ($data['categories'] as $item): ?>
+       <li class="nav__item">
+         <a href="all-lots.html"><?= $item ?></a>
+       </li>
+       <?php endforeach; ?>
+     </ul>
   </nav>
   <form class="form form--add-lot container" action="add.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
@@ -27,22 +14,16 @@
       <div class="form__item <?= isset($errors['name'])?'form__item--invalid':'' ?>"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
         <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?php if (isset($lot['name'])) {
-    print $lot['name'];
-}?>">
+    print $lot['name'];}?>">
         <span class="form__error"><?= $errors['name']?></span>
       </div>
       <div class="form__item <?= isset($errors['category'])?'form__item--invalid':'' ?>">
         <label for="category">Категория</label>
-        <select id="category" name="category" required value="<?php if (isset($lot['category'])) {
-    print $lot['category'];
-}?>">
+        <select id="category" name="category" required value="">
           <option>Выберите категорию</option>
-          <option>Доски и лыжи</option>
-          <option>Крепления</option>
-          <option>Ботинки</option>
-          <option>Одежда</option>
-          <option>Инструменты</option>
-          <option>Разное</option>
+          <?php foreach ($data['categories'] as $item): ?>
+          <option><?= $item ?></option>
+          <?php endforeach; ?>
         </select>
         <span class="form__error"><?= $errors['category']?></span>
       </div>
@@ -72,7 +53,7 @@
     <div class="form__container-three">
       <div class="form__item form__item--small  <?= isset($errors['lot-rate'])?'form__item--invalid':'' ?>">
         <label for="lot-rate">Начальная цена</label>
-        <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?= $lot['lot-rate']?>">
+        <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?= $lot['price']?>">
         <span class="form__error"><?= $errors['lot-rate']?></span>
       </div>
       <div class="form__item form__item--small <?= isset($errors['lot-step'])?'form__item--invalid':'' ?>">
